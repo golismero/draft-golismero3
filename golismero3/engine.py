@@ -54,14 +54,20 @@ class Engine(KnowledgeEngine):
             self.run()
             fresh_facts = False
 
-            # Run all tasks and gather results
-            for task in self.tasks:
-                for lineage in task:
-                    info = Info.from_lineage(lineage)
-                    self.declare(info)
-                    fresh_facts = True
+            try:
+                # Run all tasks and gather results
+                for task in self.tasks:
+                    for lineage in task:
+                        info = Info.from_lineage(lineage)
+                        self.declare(info)
+                        fresh_facts = True
+            except KeyboardInterrupt:
+                # The user aborted the task
+                break
+
             self.tasks = list()
 
+        # Print a dirty report
         for fact in self.facts.values():
             if isinstance(fact, Info):
                 yield unfreeze(fact.as_dict())
