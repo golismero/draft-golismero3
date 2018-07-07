@@ -20,6 +20,6 @@ def test_call_plugin():
             {"_id": "321", "_type": "PORT", "port": 81}
         ]
     ]
-    results = list()
+    
     assert res == expected_output
 
