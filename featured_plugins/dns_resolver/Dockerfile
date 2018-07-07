@@ -9,7 +9,8 @@ RUN apk update && \
 RUN pip install -r /requirements.txt && \
     mkdir /plugin
 
-COPY ./task.py /plugin
+COPY ./ /plugin
 RUN chmod +x /plugin/task.py
 
+WORKDIR /plugin
 ENTRYPOINT ["/usr/local/bin/python", "/plugin/task.py"]
