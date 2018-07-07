@@ -242,18 +242,18 @@ def search_yandex(word):
 ENGINES = (
     search_baidu,
     search_bing,
-    search_crtsh,
+    # search_crtsh,         # Not present in the stable release.
     search_dogpile,
     search_exalead,
     search_google,
     # search_googleplus,    # Only produces People results, not yet suported.
     # search_jigsaw,        # Only produces People results, not yet suported.
     # search_linkedin,      # Only produces People results, not yet suported.
-    search_netcraft,
+    # search_netcraft,      # Not present in the stable release.
     # search_pgp,           # Always times out when trying to connect to the server.
-    search_threatcrowd,
+    # search_threatcrowd,   # Not present in the stable release.
     # search_twitter,       # Only produces People results, not yet suported.
-    search_virustotal,
+    # search_virustotal,    # Not present in the stable release.
     search_yahoo,
     search_yandex,
 )
