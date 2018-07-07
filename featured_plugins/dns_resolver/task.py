@@ -7,12 +7,13 @@
 # -------------------------------------------------------------------------
 # We assumes that the input data was checked for correct number of fields
 # -------------------------------------------------------------------------
-
-from typing import List, Tuple
-
+import sys
 import mmh3
+import json
 import logging
 import dns.resolver
+
+from typing import List, Tuple
 
 log = logging.getLogger("golismero3")
 
@@ -20,19 +21,6 @@ log = logging.getLogger("golismero3")
 class Golismero3Exception(Exception):
     pass
 
-
-DUMMY_DATA: list = [
-    {
-        '_id': mmh3.hash128("helloWorld"),
-        '_type': 'domain',
-        'domain': 'sueldonetoautonomo.es'
-    },
-    {
-        '_id': mmh3.hash128("helloWorld"),
-        '_type': 'ip',
-        'ip': '165.227.229.13'
-    }
-]
 
 DNS_TYPES = ('A', 'AAAA', 'NS', 'MX')
 REGISTER_EXTRACTOR = {
@@ -88,7 +76,21 @@ def run_plugin(data: List[dict]) -> List[dict]:
     return results
 
 
-if __name__ == '__main__':
-    result = run_plugin(DUMMY_DATA)
+def main() -> str:
+    # -------------------------------------------------------------------------
+    # Read input parameters via std-in
+    # -------------------------------------------------------------------------
+    with open(sys.stdin, "r") as f:
+        input_data = f.read()
 
-    print(result)
+    # Text -> json
+    input_as_json = json.loads(input_data)
+
+    result = run_plugin(input_as_json)
+
+    # Dump result to std-out
+    return json.dumps(result)
+
+
+if __name__ == '__main__':
+    print(main())
