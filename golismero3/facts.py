@@ -10,7 +10,7 @@ class Info(Fact):
     """Discovered information"""
     @classmethod
     def from_lineage(cls, lineage):
-        values = dict()
+        values = {"_lineage": lineage[:-1]}
         for item in lineage:
             values.update(item)
         return cls(**values)

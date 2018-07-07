@@ -7,11 +7,14 @@ from pyknow import *
 
 GolismeroEngine = Engine.from_rulesets({
     "webscan": {
-        "rule1": {"lhs": Rule(Vector(type="ip", ip=MATCH.dst)),
+        "rule1": {"lhs": [Vector(_type="ip", ip=MATCH.dst)],
+                  "command": "cat /home/nil/Project/golismero3/examples/tool_output.json"},
+        "rule2": {"lhs": [Vector(_type="domain", domain=MATCH.dst),
+                          Vector(_type="port", port=MATCH.port)],
                   "command": "command1.exe"},
-        "rule2": {"lhs": Rule(Vector(type="domain", domain=MATCH.dst)),
-                  "command": "command1.exe"}}})
+        "rule3": {"lhs": [Vector(_type="port", port=MATCH.port)],
+                  "command": "command2.exe"}}})
 
 watch("RULES", "FACTS")
 engine = GolismeroEngine()
-engine.start(vectors=[Vector(type="ip", ip="192.168.1.1")])
+engine.start(vectors=[Vector(_type="ip", _id="lalala", ip="192.168.1.1")])
