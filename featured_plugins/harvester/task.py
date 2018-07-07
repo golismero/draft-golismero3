@@ -101,7 +101,7 @@ for hostname in sorted(hostnames):
                 "_id": mmh3.hash128(hostname),
                 "_type": "domain",
                 "_tool": TOOL,
-                "domain": domain,
+                "domain": hostname,
             }
         )
 
