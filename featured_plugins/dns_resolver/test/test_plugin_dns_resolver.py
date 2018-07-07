@@ -30,7 +30,9 @@ def test_plugin_dns_resolver_successful(monkeypatch):
 
         return b
 
-    monkeypatch.setattr('sys.stdin', op.join(HERE, "input_example.json"))
+    monkeypatch.setattr('sys.stdin', open(
+        op.join(HERE, "input_example.json"),
+        "r"))
     monkeypatch.setattr('dns.resolver.query', fake)
 
     result = main()

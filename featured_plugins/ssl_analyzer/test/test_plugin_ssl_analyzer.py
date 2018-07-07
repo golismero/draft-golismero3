@@ -13,7 +13,8 @@ def test_plugin_ssl_analyzer_successful(monkeypatch):
     def fake(command,callback, file_result):
         return open(op.join(HERE, "result.json"), "r").read()
 
-    monkeypatch.setattr('sys.stdin', op.join(HERE, "input_example.json"))
+    monkeypatch.setattr('sys.stdin', open(
+        op.join(HERE, "input_example.json")))
     featured_plugins.ssl_analyzer.plugin_executor.launch_command = fake
 
     result = main()

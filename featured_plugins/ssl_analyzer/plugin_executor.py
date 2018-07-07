@@ -84,11 +84,8 @@ def main() -> str:
     # -------------------------------------------------------------------------
     # Read input parameters via std-in
     # -------------------------------------------------------------------------
-    with open(sys.stdin, "r") as f:
-        input_data = f.read()
-
     # Text -> json
-    input_as_json = json.loads(input_data)
+    input_as_json = json.load(sys.stdin)
 
     result = run_plugin(input_as_json)
 

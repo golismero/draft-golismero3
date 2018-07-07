@@ -16,4 +16,4 @@ COPY ./ /app/featured_plugins/dns_resolver
 RUN chmod +x /app/featured_plugins/dns_resolver/plugin_executor.py
 
 WORKDIR /app
-ENTRYPOINT ["/usr/local/bin/python", "/plugin/plugin_executor.py"]
+ENTRYPOINT ["/usr/local/bin/python", "/app/featured_plugins/dns_resolver/plugin_executor.py"]

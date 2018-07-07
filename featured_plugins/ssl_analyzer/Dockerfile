@@ -14,4 +14,4 @@ COPY ./ /app/featured_plugins/ssl_analyzer
 RUN chmod +x /app/featured_plugins/ssl_analyzer/plugin_executor.py
 
 WORKDIR /app
-ENTRYPOINT ["/usr/local/bin/python", "/plugin/plugin_executor.py"]
+ENTRYPOINT ["/usr/local/bin/python", "/app/featured_plugins/ssl_analyzer/plugin_executor.py"]
