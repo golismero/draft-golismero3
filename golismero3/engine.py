@@ -1,3 +1,6 @@
+import operator as op
+from functools import reduce
+
 from pyknow import *
 from pyknow.utils import unfreeze
 from golismero3.facts import Vector, Info, TaskRequest
@@ -17,12 +20,14 @@ class Engine(KnowledgeEngine):
     @DefFacts()
     def initial_vector(self, vectors):
         self.tasks = list()
-        yield from vectors
+        for vector in vectors:
+            vector["_lineage"] = list()
+            yield vector
 
     @Rule(
         AS.info << Info(
             _id=MATCH.id,
-            _type=MATCH.type),
+            _type=NE("error") & MATCH.type),
         NOT(
             Vector(
                 _id=MATCH.id,
@@ -35,20 +40,24 @@ class Engine(KnowledgeEngine):
         AS.task << TaskRequest())
     def launch_task(self, task):
         runner = plugin_runner(task["command"])
-        self.tasks.append(runner(unfreeze(task["stdin"])))
+        lineage = unfreeze(task["lineages"])
+        stdin = unfreeze(task["stdin"])
+
+        self.tasks.append(runner(lineage, stdin))
 
     def start(self, vectors):
         # Declare initial facts
         self.reset(vectors=vectors)
 
-        first_run = True
-        while self.tasks or first_run:
-            first_run = False
-
+        fresh_facts = True
+        while self.tasks or fresh_facts:
             self.run()
+            fresh_facts = False
+
             # Run all tasks and gather results
             for task in self.tasks:
                 for lineage in task:
                     info = Info.from_lineage(lineage)
                     self.declare(info)
+                    fresh_facts = True
             self.tasks = list()
