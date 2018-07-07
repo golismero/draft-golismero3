@@ -18,10 +18,15 @@ Description
 
 The latest version of Golismero
 
-Documentation
-=============
+Properties
+----------
 
-Go to documentation site: https://golismero3.readthedocs.org/
+All the data types returned by a plugin, must has:
+
+- _id: Added by plugin
+- _type: Added by type
+- _tool: tool name launched by the plugin
+- _cmd: command used to launch a plugin
 
 Contributing
 ============
