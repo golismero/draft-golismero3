@@ -54,7 +54,7 @@ def validate_hostname(hostname):
 TOOL = "theHarvester 2.7"
 
 # Get the hostname to be used as a search keyword.
-word = json.load(sys.stdin)["hostname"]
+word = json.load(sys.stdin)["domain"]
 
 # This is where we'll put all of our output.
 output = []
@@ -99,9 +99,9 @@ for hostname in sorted(hostnames):
         output.append(
             {
                 "_id": mmh3.hash128(hostname),
-                "_type": "hostname",
+                "_type": "domain",
                 "_tool": TOOL,
-                "hostname": hostname,
+                "domain": domain,
             }
         )
 
