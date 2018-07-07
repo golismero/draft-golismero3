@@ -15,4 +15,5 @@ COPY ./theharvester_wrapper.py /plugin
 RUN chmod +x /plugin/task.py && \
     pip install -r /plugin/requirements.txt
 
+WORKDIR /plugin
 ENTRYPOINT ["/usr/local/bin/python2", "/plugin/task.py"]
