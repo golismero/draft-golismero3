@@ -17,4 +17,5 @@ GolismeroEngine = Engine.from_rulesets({
 
 watch("RULES", "FACTS")
 engine = GolismeroEngine()
-engine.start(vectors=[Vector(_type="ip", _id="lalala", ip="192.168.1.1")])
+engine.start(vectors=[Vector(_type="ip", _id="lalala", ip="192.168.1.1"),
+                      Vector(_type="ip", _id="lololo", ip="192.168.1.2")])

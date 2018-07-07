@@ -1,7 +1,18 @@
 import operator as op
-from pyknow import Rule, AS, W
+from functools import reduce
+
+from pyknow import Rule, AS, W, TEST
 
 from golismero3.facts import TaskRequest
+
+
+def _shared_lineage(**context):
+    lineages = [v for k, v in context.items() if k.startswith("_lineage_")]
+    items = [{(v["_id"], v["_type"]) for v in lineage} for lineage in lineages]
+    if items:
+        return bool(reduce(op.and_, items))
+    else:
+        return True
 
 
 class RuleSet:
@@ -41,7 +52,8 @@ class RuleSet:
                 comp["_lineage"] = W(f"_lineage_{idx}")
                 f"_elem_{idx}" << comp
                 comps.append(comp)
-            lhs = Rule(*comps)
+            lhs = Rule(*comps,
+                       TEST(_shared_lineage))
             rhs = _create_rhs(body['command'])
             rhs.__name__ = f"{setname}__{rulename}"
             rules[rulename] = lhs(rhs)

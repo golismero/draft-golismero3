@@ -1,12 +1,19 @@
 from pyknow import Fact
+from pyknow.utils import unfreeze
+from pprint import pformat
 
 
-class Vector(Fact):
+class PPrintFact(Fact):
+    def __repr__(self):
+        return f"\n{self.__class__.__name__}(\n{pformat(unfreeze(self.as_dict()), width=120)})"
+
+
+class Vector(PPrintFact):
     """Vector to analyze"""
     pass
 
 
-class Info(Fact):
+class Info(PPrintFact):
     """Discovered information"""
     @classmethod
     def from_lineage(cls, lineage):
@@ -16,5 +23,5 @@ class Info(Fact):
         return cls(**values)
 
 
-class TaskRequest(Fact):
+class TaskRequest(PPrintFact):
     pass
