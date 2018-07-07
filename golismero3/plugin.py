@@ -11,12 +11,11 @@ def plugin_runner(cmd):
         return b
     def _parse_json(out):
         return json.loads(out)
-    def _runner(inp=None):
-        input_data = [inp]
+    def _runner(lineage, inp=None):
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, stdin=subprocess.PIPE)
         stdout, stderr = p.communicate(input=_parse_input(inp))
         if stderr:
-            out = input_data.copy()
+            out = lineage.copy()
             out.append({
                 "_id": mmh3.hash128(stderr),
                 "_type": "error",
@@ -29,6 +28,6 @@ def plugin_runner(cmd):
             for elm in _parse_json(stdout):
                 for x in elm:
                     x["_cmd"] = cmd
-                out = input_data.copy()
+                out = lineage.copy()
                 yield out + elm
     return _runner
