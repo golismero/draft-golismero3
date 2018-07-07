@@ -61,3 +61,7 @@ class Engine(KnowledgeEngine):
                     self.declare(info)
                     fresh_facts = True
             self.tasks = list()
+
+        for fact in self.facts.values():
+            if isinstance(fact, Info):
+                yield unfreeze(fact.as_dict())
