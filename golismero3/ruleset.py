@@ -6,7 +6,7 @@ from golismero3.facts import TaskRequest
 
 class RuleSet:
     @classmethod
-    def build(cls, name, spec):
+    def build(cls, setname, spec):
         """
         Rule struct example
         {'rulename1': {'lhs': [Vector(_type="ip", ip=MATCH.pollas)))],
@@ -42,6 +42,8 @@ class RuleSet:
                 f"_elem_{idx}" << comp
                 comps.append(comp)
             lhs = Rule(*comps)
-            rules[rulename] = lhs(_create_rhs(body['command']))
+            rhs = _create_rhs(body['command'])
+            rhs.__name__ = f"{setname}__{rulename}"
+            rules[rulename] = lhs(rhs)
 
-        return type(name, (cls,), rules)
+        return type(setname, (cls,), rules)
