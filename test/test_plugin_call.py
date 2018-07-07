@@ -3,9 +3,7 @@ import json
 from pprint import pprint
 
 def test_call_plugin():
-    raw_inp = [
-        {"_id": 1, "_type": "ip", "ip": "192.168.1.1"}
-    ]
+    raw_inp = {"_id": 1, "_type": "ip", "ip": "192.168.1.1"}
     inp = json.dumps(raw_inp)
     plugin = plugin_runner("cat examples/tool_output.json")
     res = list( plugin(inp) )
@@ -29,9 +27,7 @@ def test_call_plugin():
     assert res == expected_output
 
 def test_fail_plugin():
-    raw_inp = [
-        {"_id": 1, "_type": "ip", "ip": "192.168.1.1"}
-    ]
+    raw_inp = {"_id": 1, "_type": "ip", "ip": "192.168.1.1"}
     inp = json.dumps(raw_inp)
     plugin = plugin_runner("echo 'Error!' 1>&2; exit 64")
     res = list( plugin(inp) )
@@ -52,9 +48,7 @@ def test_fail_plugin():
     assert res == expected_output
 
 def test_multiple_element_return():
-    raw_inp = [
-        {"_id": 1, "_type": "domain", "domain": "bad.local"}
-    ]
+    raw_inp = {"_id": 1, "_type": "domain", "domain": "bad.local"}
     inp = json.dumps(raw_inp)
     plugin = plugin_runner("cat examples/tool_multiple_output.json")
     res = list( plugin(inp) )

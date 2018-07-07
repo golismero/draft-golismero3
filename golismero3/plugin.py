@@ -12,7 +12,7 @@ def plugin_runner(cmd):
     def _parse_json(out):
         return json.loads(out)
     def _runner(inp=None):
-        input_data = _parse_json(inp)
+        input_data = [_parse_json(inp)]
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, stdin=subprocess.PIPE)
         stdout, stderr = p.communicate(input=_parse_input(inp))
         if stderr:
