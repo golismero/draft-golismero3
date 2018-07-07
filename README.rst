@@ -1,5 +1,5 @@
-Patton - The vulnerability knowledge store
-==========================================
+Golismero 3 - GoLismero is an free software framework for security testing
+==========================================================================
 
 +----------------+-------------------------------------------------+
 |Current version | 3.0.0                                           |
@@ -8,7 +8,7 @@ Patton - The vulnerability knowledge store
 +----------------+-------------------------------------------------+
 |Issues          | https://github.com/golismero/golismero3/issues/ |
 +----------------+-------------------------------------------------+
-|Documentation   | https://patton-server.readthedocs.org/          |
+|Documentation   | https://golismero3.readthedocs.org/          |
 +----------------+-------------------------------------------------+
 |Python versions | 3.6 or above                                    |
 +----------------+-------------------------------------------------+
