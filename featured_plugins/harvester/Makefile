@@ -14,5 +14,5 @@ image:
 	@docker build . -t golismero-plugin-${PLUGIN}:${VERSION}
 
 prune:
-	@docker rmi -f golismero-plugin-${PLUGIN}:${VERSION}
+	@docker rmi -f golismero-plugin-${PLUGIN}
 	@docker system prune -f

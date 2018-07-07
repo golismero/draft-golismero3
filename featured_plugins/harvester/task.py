@@ -116,5 +116,8 @@ for error in errors:
         }
     )
 
+# This simple plugin has no lineage, all elements are new.
+output = [ [_] for _ in output ]
+
 # Spit out all the output in JSON format to the real stdout.
-json.dump([output], stdout)
+json.dump(output, stdout)
