@@ -5,3 +5,7 @@ test: image
 
 image:
 	@docker build . -t golismero-dev:0.1
+
+prune:
+	@docker rmi -f golismero-dev:0.1
+	@docker system prune -f

@@ -1,4 +1,4 @@
-from golismero.plugin import plugin_runner
+from golismero3.plugin import plugin_runner
 import json
 
 def test_call_plugin():
