@@ -1,4 +1,4 @@
 [
-    {"_id": "123", "_type": "PORT", "port": 80},
-    {"_id": "321", "_type": "PORT", "port": 81}
+    [{"_id": "123", "_type": "port", "port": 80}],
+    [{"_id": "321", "_type": "port", "port": 81}]
 ]
