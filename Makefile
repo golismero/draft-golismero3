@@ -1,7 +1,7 @@
 .PHONY: all
 
 test: image
-	@docker run -it --rm golismero-dev:0.1 pytest
+	@docker run -it --rm golismero-dev:0.1 pytest --ignore=featured_plugins
 
 image:
 	@docker build . -t golismero-dev:0.1
