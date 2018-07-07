@@ -21,13 +21,14 @@ def plugin_runner(cmd):
                 "_id": mmh3.hash128(stderr),
                 "_type": "ERROR",
                 "_tool": cmd,
-                "error": stderr
+                "error": stderr.decode()
             })
             yield out
         # for know data types use our own hash
-        for elm in _parse_json(stdout):
-            elm["_tool"] = cmd
-            out = input_data.copy()
-            out.append(elm)
-            yield out
+        if stdout:
+            for elm in _parse_json(stdout):
+                elm["_tool"] = cmd
+                out = input_data.copy()
+                out.append(elm)
+                yield out
     return _runner
