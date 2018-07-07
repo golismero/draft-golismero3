@@ -7,14 +7,13 @@
 # -------------------------------------------------------------------------
 # We assumes that the input data was checked for correct number of fields
 # -------------------------------------------------------------------------
-import os
 import sys
 import mmh3
 import json
 import logging
 import platform
 
-from typing import List, Tuple
+from typing import List
 from golismero_helpers import Golismero3Exception, calculate_hash
 from golismero_helpers.os_helpers import launch_command
 

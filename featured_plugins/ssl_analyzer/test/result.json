@@ -1,0 +1,105 @@
+{
+          "Invocation"  : "testssl.sh --jsonfile-pretty result.json --severity MEDIUM --sneaky -U -S -p elpais.com",
+          "at"          : "Warning-Virus-found:/usr/local/opt/openssl/bin/openssl",
+          "version"     : "2.9.5-4 5a2d28b from 2018-07-07",
+          "openssl"     : "1.0.2o from reproducible build, date unspecified",
+          "target host" : "elpais.com",
+          "port"        : "443",
+          "startTime"   : "1530974020",
+          "scanResult"  : [
+          {
+                    "service"         : "Service detected: HTTP",
+                    "ip"              : "92.122.188.169",
+                    "protocols"         : [
+
+                    ],
+                    "ciphers"           : [
+
+                    ],
+                    "pfs"               : [
+
+                    ],
+                    "serverPreferences" : [
+
+                    ],
+                    "serverDefaults"    : [
+
+                    ],
+                    "vulnerabilities"   : [
+                            {
+                                "id"           : "sec_client_renego",
+                                "severity"     : "HIGH",
+                                "cve"          : "CVE-2009-3555",
+                                "cwe"          : "CWE-310",
+                                "finding"      : "Secure Client-Initiated Renegotiation : VULNERABLE, DoS threat"
+                           },{
+                                "id"           : "breach",
+                                "severity"     : "HIGH",
+                                "cve"          : "CVE-2013-3587",
+                                "cwe"          : "CWE-310",
+                                "finding"      : "BREACH: potentially VULNERABLE, uses gzip HTTP compression.  - only supplied '/' tested ( Can be ignored for static pages or if no secrets in the page)"
+                           },{
+                                "id"           : "cbc_tls1",
+                                "severity"     : "MEDIUM",
+                                "cve"          : "CVE-2011-3389",
+                                "cwe"          : "CWE-20",
+                                "finding"      : "BEAST: CBC ciphers for TLS1: ECDHE-RSA-AES256-SHA ECDHE-RSA-AES128-SHA AES256-SHA AES128-SHA"
+                           }
+                    ],
+                    "cipherTests"       : [
+
+                    ],
+                    "browserSimulations": [
+
+                    ]
+          }
+          ,
+          {
+                    "service"         : "Service detected: HTTP",
+                    "ip"              : "92.122.188.183",
+                    "protocols"         : [
+
+                    ],
+                    "ciphers"           : [
+
+                    ],
+                    "pfs"               : [
+
+                    ],
+                    "serverPreferences" : [
+
+                    ],
+                    "serverDefaults"    : [
+
+                    ],
+                    "vulnerabilities"   : [
+                            {
+                                "id"           : "sec_client_renego",
+                                "severity"     : "HIGH",
+                                "cve"          : "CVE-2009-3555",
+                                "cwe"          : "CWE-310",
+                                "finding"      : "Secure Client-Initiated Renegotiation : VULNERABLE, DoS threat"
+                           },{
+                                "id"           : "breach",
+                                "severity"     : "HIGH",
+                                "cve"          : "CVE-2013-3587",
+                                "cwe"          : "CWE-310",
+                                "finding"      : "BREACH: potentially VULNERABLE, uses gzip HTTP compression.  - only supplied '/' tested ( Can be ignored for static pages or if no secrets in the page)"
+                           },{
+                                "id"           : "cbc_tls1",
+                                "severity"     : "MEDIUM",
+                                "cve"          : "CVE-2011-3389",
+                                "cwe"          : "CWE-20",
+                                "finding"      : "BEAST: CBC ciphers for TLS1: ECDHE-RSA-AES256-SHA ECDHE-RSA-AES128-SHA AES256-SHA AES128-SHA"
+                           }
+                    ],
+                    "cipherTests"       : [
+
+                    ],
+                    "browserSimulations": [
+
+                    ]
+          }
+          ],
+          "scanTime"  : "63"
+}
