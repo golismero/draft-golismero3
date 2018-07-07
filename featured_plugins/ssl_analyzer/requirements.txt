@@ -1,4 +1,4 @@
 mmh3
 pytest
 dnspython
-https://github.com/golismero/golismero-python-helpers.git
+https://codeload.github.com/golismero/golismero-python-helpers/zip/master

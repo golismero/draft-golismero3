@@ -9,7 +9,7 @@ RUN pip install -r /requirements.txt && \
     mkdir /plugin
 
 COPY ./ /plugin
-RUN chmod +x /plugin/task.py
+RUN chmod +x /plugin/plugin_executor.py
 
 WORKDIR /plugin
 ENTRYPOINT ["/usr/local/bin/python", "/plugin/plugin_executor.py"]
