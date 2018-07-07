@@ -65,7 +65,7 @@ def test_multiple_element_return():
             {
                 "_id": 212281217781803245129106443529066261547, "_type": "vulnerability",
                 "_cmd": "cat examples/tool_multiple_output.json",
-                "cve": "CVE-2014-9999999", "cwe": "CWE-245", "description": "we are doom!"
+                "cve": "CVE-2014-9999999", "cwe": "CWE-245", "description": "we are doomed!"
             }
         ]
     ]
