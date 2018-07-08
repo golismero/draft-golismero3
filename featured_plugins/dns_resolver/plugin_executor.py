@@ -8,18 +8,16 @@
 # We assumes that the input data was checked for correct number of fields
 # -------------------------------------------------------------------------
 import sys
-import mmh3
 import json
 import logging
 import dns.resolver
 
 from typing import List, Tuple
 
+from golismero_helpers import calculate_hash
+
+
 log = logging.getLogger("golismero3")
-
-
-class Golismero3Exception(Exception):
-    pass
 
 
 DNS_TYPES = ('A', 'AAAA', 'NS', 'MX')
@@ -31,47 +29,46 @@ REGISTER_EXTRACTOR = {
 }
 
 
-def parse_input_data(data: List[dict]) -> Tuple[dict, dict]:
-    # First element must be a domain type
-    if len(data) < 2:
-        raise Golismero3Exception("Input data must have at least 2 "
-                                  "linked data")
+def run_plugin(data: dict) -> List[List[dict]]:
 
-    domain = data[0]
-    ip = data[1]
-
-    if domain['_type'] != 'domain':
-        raise Golismero3Exception("Type must be 'domain'")
-    if ip['_type'] != 'ip':
-        raise Golismero3Exception("Type must be 'ip'")
-
-    return ip, domain
-
-
-def run_plugin(data: List[dict]) -> List[dict]:
-
-    ip, domain = parse_input_data(data)
+    domain = data['domain']
 
     log.info(f"Starting DNS information gathering for domain "
-             f"{domain['domain']}")
+             f"{domain}")
 
     results = []
 
+    a_registers = []
+
     for dns_type in DNS_TYPES:
         try:
-            response = dns.resolver.query(domain['domain'], dns_type)
+            response = dns.resolver.query(domain, dns_type)
         except Exception:
             continue
 
         # get returned value from query.
         for ans in response.response.answer:
-            ips = [REGISTER_EXTRACTOR[dns_type](x) for x in ans.items]
+            query_result = [REGISTER_EXTRACTOR[dns_type](x) for x in ans.items]
 
-            results.extend([{
-                '_id': mmh3.hash128(f"{dns_type}{ip}"),
-                '_type': dns_type,
-                'value': ip
-            } for ip in ips])
+            if dns_type in ("A", "AAAA"):
+                a_registers.extend(query_result)
+
+            for ip in a_registers:
+                v_ip = {
+                    '_type': 'ip',
+                    'ip': ip
+                }
+                v_ip['_id'] = calculate_hash(v_ip)
+
+                for q in query_result:
+
+                    reg = {
+                        '_type': dns_type,
+                        'value': q
+                    }
+                    reg['_id'] = calculate_hash([v_ip, reg])
+
+                    results.append([v_ip, reg])
 
     return results
 
@@ -80,11 +77,7 @@ def main() -> str:
     # -------------------------------------------------------------------------
     # Read input parameters via std-in
     # -------------------------------------------------------------------------
-    with open(sys.stdin, "r") as f:
-        input_data = f.read()
-
-    # Text -> json
-    input_as_json = json.loads(input_data)
+    input_as_json = json.load(sys.stdin)
 
     result = run_plugin(input_as_json)
 

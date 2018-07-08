@@ -1,7 +1,5 @@
-[
-  {
-    "_id": 0,
-    "_type": "hostname",
-    "hostname": "google.com"
-  }
-]
+{
+  "_id": 0,
+  "_type": "domain",
+  "domain": "google.com"
+}

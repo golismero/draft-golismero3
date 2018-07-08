@@ -7,7 +7,8 @@ RUN apk update && \
 RUN mkdir /plugin && \
     wget https://github.com/laramies/theHarvester/archive/2.7.zip -O /plugin/2.7.zip && \
     unzip /plugin/2.7.zip -d /plugin/ && \
-    mv /plugin/theHarvester-2.7 /plugin/theHarvester
+    mv /plugin/theHarvester-2.7 /plugin/theHarvester && \
+    rm /plugin/2.7.zip
 
 COPY ./requirements.txt /plugin
 COPY ./task.py /plugin
@@ -15,4 +16,5 @@ COPY ./theharvester_wrapper.py /plugin
 RUN chmod +x /plugin/task.py && \
     pip install -r /plugin/requirements.txt
 
+WORKDIR /plugin
 ENTRYPOINT ["/usr/local/bin/python2", "/plugin/task.py"]
