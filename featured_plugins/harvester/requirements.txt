@@ -1,3 +1,0 @@
-email_validator
-mmh3
-requests
