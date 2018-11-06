@@ -1,3 +1,4 @@
+# flake8: noqa
 import json
 from golismero3.engine import Engine
 from golismero3.facts import Vector

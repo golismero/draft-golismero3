@@ -2,17 +2,23 @@ import subprocess
 import json
 import mmh3
 
+
 def plugin_runner(cmd):
+
     def _parse_input(inp):
         if not inp:
             return None
         b = bytearray()
         b.extend(json.dumps(inp).encode())
         return b
+
     def _parse_json(out):
         return json.loads(out)
+
     def _runner(lineage, inp=None):
-        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, stdin=subprocess.PIPE)
+        p = subprocess.Popen(cmd,
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                             shell=True, stdin=subprocess.PIPE)
         stdout, stderr = p.communicate(input=_parse_input(inp))
         if stderr:
             out = lineage.copy()

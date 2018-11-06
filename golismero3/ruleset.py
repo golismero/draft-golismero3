@@ -1,7 +1,7 @@
 import operator as op
 from functools import reduce
 
-from pyknow import Rule, AS, W, TEST
+from pyknow import Rule, W, TEST
 
 from golismero3.facts import TaskRequest
 

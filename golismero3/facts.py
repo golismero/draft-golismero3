@@ -5,7 +5,7 @@ from pprint import pformat
 
 class PPrintFact(Fact):
     def __repr__(self):
-        return f"\n{self.__class__.__name__}(\n{pformat(unfreeze(self.as_dict()), width=120)})"
+        return f"\n{self.__class__.__name__}(\n{pformat(unfreeze(self.as_dict()), width=120)})"  # noqa
 
 
 class Vector(PPrintFact):

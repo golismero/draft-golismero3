@@ -14,7 +14,7 @@ import logging
 import platform
 
 from typing import List
-from golismero_helpers import Golismero3Exception, calculate_hash
+from golismero_helpers import calculate_hash
 from golismero_helpers.os_helpers import launch_command
 
 log = logging.getLogger("golismero3")

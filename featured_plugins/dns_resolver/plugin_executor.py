@@ -12,7 +12,7 @@ import json
 import logging
 import dns.resolver
 
-from typing import List, Tuple
+from typing import List
 
 from golismero_helpers import calculate_hash
 

@@ -1,0 +1,22 @@
+language: python
+
+# Supported CPython versions:
+# https://en.wikipedia.org/wiki/CPython#Version_history
+python:
+ - pypy3
+ - 3.6
+ - 3.5
+ - 3.4
+
+# Use container-based infrastructure
+sudo: false
+
+install:
+ - pip install flake8
+
+script:
+ # Static analysis
+ - python3 -m flake8 --exclude=test
+
+matrix:
+  fast_finish: true

@@ -1,7 +1,4 @@
-import operator as op
-from functools import reduce
-
-from pyknow import *
+from pyknow import KnowledgeEngine, DefFacts, Rule, AS, MATCH, NE, NOT
 from pyknow.utils import unfreeze
 from golismero3.facts import Vector, Info, TaskRequest
 from golismero3.ruleset import RuleSet
